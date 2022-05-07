@@ -8,6 +8,11 @@ namespace KarlssonWorksAB_AssetTracker
 {
     class applogic
     {
+        // This class contains all the workings of the asset tracking program.
+        // My solution to it was to set it up by using 4 methods one of which is called from a diffirent class,
+        // And the others in a switch statement. Essential lists, items and variables are declared as early as possible in the class.
+        // Because I find it more managable to read and edit it if needed.
+
         //Create the lists
         static List<LaptopComputers> computers = new List<LaptopComputers>();
         static List<MobilePhones> mobilePhones = new List<MobilePhones>();

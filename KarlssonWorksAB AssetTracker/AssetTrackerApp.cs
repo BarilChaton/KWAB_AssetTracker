@@ -12,9 +12,9 @@ namespace KarlssonWorksAB_AssetTracker
         static List<MobilePhones> MobileAssets = new List<MobilePhones>();
         static void Main(string[] args)
         {
-            Console.SetWindowSize(160, 20);
-            applogic app = new applogic();
-            app.Start();
+            Console.SetWindowSize(160, 20); // Sets window size (does only work for the windows system.)
+            applogic app = new applogic();  // Calls the applogic class.
+            app.Start();                    // Calls the start method of the said class. (Essentially runs the program.) I find it more efficient to do it this way.
         }
     }
 }

@@ -9,6 +9,12 @@ namespace KarlssonWorksAB_AssetTracker
 {
     class Menu
     {
+        // This class is controlling the ability for the user in certain situations to control
+        // the input by selecting options using the arrow keys instead of typing in a character.
+        // It is essentially a constructor that works with a string array and console colors for highlighting.
+        // This class can be easily called to any other class when necessary by using 3 lines of code. And then using a switch statement to make it work.
+        // I didn't do this but I wrote it from a tutorial although I mostly understand the workings of it and know how to use it in diffirent contexts.
+
         private int SelectedIndex;
         private string[] Options;
         private string Prompt;
