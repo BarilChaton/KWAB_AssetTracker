@@ -114,12 +114,14 @@ namespace KarlssonWorksAB_AssetTracker
 
         private static void ShowList()
         {
+            Console.WriteLine("Computer Assets:\n");
+            Console.WriteLine("Computer Brand".PadRight(24) + "Model".PadRight(15) + "Purchase Date".PadRight(22) + "Office:".PadRight(16) + "Price(in SEK)".PadRight(23));
+            Console.WriteLine("¤======================================================================================================================¤");
             foreach (LaptopComputers computer in computers)
             {
-                Console.WriteLine("Computer Assets:");
-                Console.WriteLine("Computer Brand" + "Model".ToString().PadLeft(20) + "Purchase Date".ToString().PadLeft(20) + "Office:".ToString().PadLeft(20) + "Price(in SEK)".ToString());
-                Console.WriteLine(computer.Brand + " " + computer.LaptopModel.PadLeft(20) + " " + computer.PurchaseDate.ToString("yyyy-MM-dd").PadLeft(20) + " " + computer.Office.PadLeft(20) + " " + computer.Price.ToString());
+                Console.WriteLine(computer.Brand.PadRight(23) + " " + computer.LaptopModel.PadRight(14) + " " + computer.PurchaseDate.ToString("yyyy-MM-dd").PadRight(21) + " " + computer.Office.PadRight(15) + " " + computer.Price.ToString().PadRight(22));
             }
+            Console.ReadLine();
         }
     }
 }
