@@ -8,11 +8,12 @@ namespace KarlssonWorksAB_AssetTracker
 {
     class LaptopComputers : BaseAssetStats
     {
+        // class irrelevant but left here just in case.
         public LaptopComputers()
         {
         }
 
-        public LaptopComputers(string office, DateTime purchaseDate, string brand, int price, string currency, string laptopModel) : base(office, brand, purchaseDate, price, currency)
+        public LaptopComputers(string office, DateTime purchaseDate, string brand, int price, string currency, string laptopModel)
         {
             LaptopModel = laptopModel;
         }

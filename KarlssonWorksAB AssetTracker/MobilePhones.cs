@@ -8,8 +8,12 @@ namespace KarlssonWorksAB_AssetTracker
 {
     class MobilePhones : BaseAssetStats
     {
+        // class irrelevant but left here just in case.
+        public MobilePhones()
+        {
+        }
 
-        public MobilePhones(string office, DateTime purchaseDate, string phoneModel, string brand, int price, string currency) : base(office, brand, purchaseDate, price, currency)
+        public MobilePhones(string office, DateTime purchaseDate, string phoneModel, string brand, int price, string currency)
         {
             PhoneModel = phoneModel;
         }
