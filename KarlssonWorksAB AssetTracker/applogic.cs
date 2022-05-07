@@ -12,6 +12,11 @@ namespace KarlssonWorksAB_AssetTracker
         static List<LaptopComputers> computers = new List<LaptopComputers>();
         static List<MobilePhones> mobilePhones = new List<MobilePhones>();
 
+        // Currency Variables.
+        static string sek = "SEK";
+        static string euro = "EUR";
+        static string usd = "USD";
+
         // Eventual variables.
 
         public void Start()
@@ -93,6 +98,26 @@ namespace KarlssonWorksAB_AssetTracker
                 computer.Price = intComputerPrice;
 
                 //------------------------------------------------------------------
+                // Ask the user in which currency the asset was pruchased.
+                string prompt = @"What currency was this asset purchased with?";
+                string[]options = { "SEK", "EUR", "USD" };
+                Menu currencyMenu = new Menu(prompt, options);
+                int selectedIndex = currencyMenu.Run();
+                switch (selectedIndex) 
+                {
+                    case 0 :
+                        computer.Currency = sek;
+                        break;
+                    case 1 :
+                        computer.Currency = euro;
+                        break;
+                    case 2 :
+                        computer.Currency = usd;
+                        break;
+                }
+
+
+                //------------------------------------------------------------------
                 // Put the object into the list.
                 computers.Add(computer);
 
@@ -115,11 +140,11 @@ namespace KarlssonWorksAB_AssetTracker
         private static void ShowList()
         {
             Console.WriteLine("Computer Assets:\n");
-            Console.WriteLine("Computer Brand".PadRight(24) + "Model".PadRight(15) + "Purchase Date".PadRight(22) + "Office:".PadRight(16) + "Price(in SEK)".PadRight(23));
+            Console.WriteLine("Computer Brand".PadRight(24) + "Model".PadRight(15) + "Purchase Date".PadRight(22) + "Office:".PadRight(16) + "Price(in SEK)".PadRight(23) + "Purchase Currency".PadRight(20));
             Console.WriteLine("¤======================================================================================================================¤");
             foreach (LaptopComputers computer in computers)
             {
-                Console.WriteLine(computer.Brand.PadRight(23) + " " + computer.LaptopModel.PadRight(14) + " " + computer.PurchaseDate.ToString("yyyy-MM-dd").PadRight(21) + " " + computer.Office.PadRight(15) + " " + computer.Price.ToString().PadRight(22));
+                Console.WriteLine(computer.Brand.PadRight(23) + " " + computer.LaptopModel.PadRight(14) + " " + computer.PurchaseDate.ToString("yyyy-MM-dd").PadRight(21) + " " + computer.Office.PadRight(15) + " " + computer.Price.ToString().PadRight(22) + " " + computer.Currency.PadRight(19));
             }
             Console.ReadLine();
         }

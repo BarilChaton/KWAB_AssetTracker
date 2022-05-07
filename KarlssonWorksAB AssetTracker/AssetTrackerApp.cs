@@ -12,6 +12,7 @@ namespace KarlssonWorksAB_AssetTracker
         static List<MobilePhones> MobileAssets = new List<MobilePhones>();
         static void Main(string[] args)
         {
+            Console.SetWindowSize(160, 20);
             applogic app = new applogic();
             app.Start();
         }
