@@ -132,9 +132,10 @@ namespace KarlssonWorksAB_AssetTracker
                     ShowList();
                     break;
                 case 2:
-                    ShowList();
+                    About();
                     break;
                 case 3:
+                    Environment.Exit(0);
                     break;
             }
         }
@@ -534,6 +535,24 @@ namespace KarlssonWorksAB_AssetTracker
                     AddAsset();
                     break;
                 }
+            }
+        }
+
+        private static void About()
+        {
+            Console.Clear();
+            Console.WriteLine("This program tracks assets for a company.");
+            Console.WriteLine("It was written in educational purposes and I learned a great deal in the process");
+            Console.WriteLine("Also I learned that I'm very fond of switches in C# :D");
+            Console.WriteLine("Enjoy the program :D");
+            Console.WriteLine("Written by Karl Christian Karlsson Korbacz");
+            Console.WriteLine("2022-05-08");
+            Console.WriteLine();
+            Console.WriteLine("Press 'R' and enter to return to the main menu...");
+            if (Console.ReadLine().ToLower().Trim() == "r")
+            {
+                applogic start = new applogic();
+                start.Start();
             }
         }
 
