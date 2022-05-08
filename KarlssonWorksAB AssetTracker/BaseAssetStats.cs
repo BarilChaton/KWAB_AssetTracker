@@ -12,7 +12,7 @@ namespace KarlssonWorksAB_AssetTracker
         {
         }
 
-        public BaseAssetStats(string office, string brand, DateTime purchaseDate, int price, string currency, string laptopModel, string phoneModel, string type)
+        public BaseAssetStats(string office, string brand, DateTime purchaseDate, double price, string currency, string laptopModel, string phoneModel, string type, double localPrice)
         {
             Office = office;
             Brand = brand;
@@ -22,16 +22,18 @@ namespace KarlssonWorksAB_AssetTracker
             LaptopModel = laptopModel;
             PhoneModel = phoneModel;
             Type = type;
+            LocalPrice = localPrice;
         }
 
         public string Office { get; set; }
         public string Brand { get; set; }
         public DateTime PurchaseDate { get; set; }
-        public int Price { get; set; }
+        public double Price { get; set; }
         public string Currency { get; set; }
         public string LaptopModel { get; set; }
         public string PhoneModel { get; set; }
         public string Type { get; set; }
+        public double LocalPrice { get; set; }
 
     }
 }
