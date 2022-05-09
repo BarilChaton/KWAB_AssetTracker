@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KarlssonWorksAB_AssetTracker
 {
     class BaseAssetStats
     {
+        // Constructor for everything.
         public BaseAssetStats()
         {
         }
@@ -34,6 +31,5 @@ namespace KarlssonWorksAB_AssetTracker
         public string PhoneModel { get; set; }
         public string Type { get; set; }
         public double LocalPrice { get; set; }
-
     }
 }

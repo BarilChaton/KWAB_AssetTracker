@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KarlssonWorksAB_AssetTracker
 {
@@ -25,7 +23,7 @@ namespace KarlssonWorksAB_AssetTracker
         // Currency exchange rate (by 2022-05-08)
         static double usdSekEx = 9.95;
         static double euroUsdEx = 0.95;
-        static double sekEuroEx = 10.49;
+        //static double sekEuroEx = 10.49;
 
         // Offices variables. Really needed?
         static string sweden = "Sweden";
@@ -46,7 +44,7 @@ namespace KarlssonWorksAB_AssetTracker
         // Phone brands
         static string iPhone = "Apple";
         static string samsungPhone = "Samsung";
-        static string huawei = "Huawei"; // ChujWie
+        static string huawei = "Huawei";
         static string xiaomi = "Xiaomi";
 
         // Apple Models
@@ -60,9 +58,9 @@ namespace KarlssonWorksAB_AssetTracker
         static string IPhone3 = "IPhone 6";
 
         // Lenovo Models
-        static string lenovo1 = "Lenovo IdeaPad Slim 5 (82FG01BAIN)";
-        static string lenovo2 = "Lenovo ThinkPad E15 (Gen 2)";
-        static string lenovo3 = "Lenovo IdeaPad Flex 3i 11.6-inch Chromebook";
+        static string lenovo1 = "Lenovo IdeaPad Slim 5";
+        static string lenovo2 = "Lenovo ThinkPad E15 Gen 2";
+        static string lenovo3 = "Lenovo IdeaPad Flex 3i CB";
 
         // HP Models
         static string hp1 = "HP Chromebook x360 14a";
@@ -99,22 +97,14 @@ namespace KarlssonWorksAB_AssetTracker
         static string xiaomi2 = "Redmi Note 10";
         static string xiaomi3 = "Redmi Note 11";
 
-        // "Apple", "Samsung", "Huawei", "Xiaomi", "Asus", "Oppo", "Vivo", "Motorola", "LG", "Nokia"
-
-        // "Apple", "Lenovo", "HP", "Dell", "Asus", "Acer", "IBM", "Raspberry PI", "Samsung", "Microsoft", "Packard Bell"
-
-        //"Sweden", "France", "Germany", "Finland", "Spain", "United States of America"
-
-
         // Type variables.
         static string pC = "Laptop";
         static string mobilePhone = "Phone";
 
-        // Eventual variables.
-
         public void Start()
         {
             Console.Clear();
+            Console.CursorVisible = false;
             // the greeting
             string prompt = @"Welcome to the Asset Tracker program." +
                                 "\nPlease select what you wish to do.\n\n";
@@ -140,7 +130,6 @@ namespace KarlssonWorksAB_AssetTracker
             }
         }
 
-
         // This methods job is to be able to add whatever the user inputs to the list declared above.
         private static void AddAsset()
         {
@@ -157,7 +146,7 @@ namespace KarlssonWorksAB_AssetTracker
                 string[] optionsType = { "Laptop", "Phone" };
                 Menu typeMenu = new Menu(promptType, optionsType);
                 int selectedIndexType = typeMenu.Run();
-                switch(selectedIndexType)
+                switch (selectedIndexType)
                 {
                     case 0:
                         asset.Type = pC;
@@ -169,30 +158,43 @@ namespace KarlssonWorksAB_AssetTracker
 
                 //------------------------------------------------------------------
                 // Ask user to input purchase date.
-                Console.WriteLine("Type in a purchase date of the computer asset (yyyy-mm-dd)");
-                DateTime inputDate = DateTime.Parse(Console.ReadLine());
+                Console.CursorVisible = true;
+                DateTime inputDate;
+            ERROR1: try
+                {
+                    Console.WriteLine("Type in a purchase date of the computer asset (yyyy-mm-dd)");
+                    inputDate = DateTime.Parse(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("You have entered the date wrong, please try again. (yyyy-mm-dd)");
+                    Console.ResetColor();
+                    goto ERROR1;
+                }
 
-                // Put the purchase date into the object.
                 asset.PurchaseDate = inputDate;
+
 
                 //------------------------------------------------------------------
                 // Ask the user which office the asset is based in.
+                Console.CursorVisible = false;
                 string promptOffice = @"Which office is the asset located in? (Country)";
                 string[] optionsOffice = { "Sweden", "France", "Germany", "Finland", "Spain", "United States of America" };
                 Menu officeMenu = new Menu(promptOffice, optionsOffice);
                 int selectedIndexOffice = officeMenu.Run();
-                switch(selectedIndexOffice)
+                switch (selectedIndexOffice)
                 {
-                    case 0 :
+                    case 0:
                         asset.Office = sweden;
                         break;
-                    case 1 :
+                    case 1:
                         asset.Office = france;
                         break;
-                    case 2 :
+                    case 2:
                         asset.Office = germany;
                         break;
-                    case 3 :
+                    case 3:
                         asset.Office = finland;
                         break;
                     case 4:
@@ -215,22 +217,22 @@ namespace KarlssonWorksAB_AssetTracker
                     {
                         // This is a long switch :D
                         // I <3 Switch :D
-                        case 0 :
+                        case 0:
                             asset.Brand = apple;
                             break;
-                        case 1 :
+                        case 1:
                             asset.Brand = lenovo;
                             break;
-                        case 2 :
+                        case 2:
                             asset.Brand = hp;
                             break;
-                        case 3 :
+                        case 3:
                             asset.Brand = dell;
                             break;
-                        case 4 :
+                        case 4:
                             asset.Brand = asus;
                             break;
-                        case 5 :
+                        case 5:
                             asset.Brand = acer;
                             break;
 
@@ -245,22 +247,20 @@ namespace KarlssonWorksAB_AssetTracker
                     switch (selectedIndexBrand)
                     {
                         // I <3 Switch :D
-                        case 0 :
+                        case 0:
                             asset.Brand = iPhone;
                             break;
-                        case 1 :
+                        case 1:
                             asset.Brand = samsungPhone;
                             break;
-                        case 2 :
+                        case 2:
                             asset.Brand = huawei;
                             break;
-                        case 3 :
+                        case 3:
                             asset.Brand = xiaomi;
                             break;
                     }
                 }
-
-                
 
                 //------------------------------------------------------------------
                 // Ask the user for the model depending if the asset is a computer or a phone.
@@ -275,13 +275,13 @@ namespace KarlssonWorksAB_AssetTracker
                         int selectedIndexModel = modelMenu.Run();
                         switch (selectedIndexModel)
                         {
-                            case 0 :
+                            case 0:
                                 asset.LaptopModel = MBP1;
                                 break;
-                            case 1 :
+                            case 1:
                                 asset.LaptopModel = MBP2;
                                 break;
-                            case 3 :
+                            case 3:
                                 asset.LaptopModel = MBP3;
                                 break;
                         }
@@ -294,13 +294,13 @@ namespace KarlssonWorksAB_AssetTracker
                         int selectedIndexModel = modelMenu.Run();
                         switch (selectedIndexModel)
                         {
-                            case 0 :
+                            case 0:
                                 asset.LaptopModel = lenovo1;
                                 break;
-                            case 1 :
+                            case 1:
                                 asset.LaptopModel = lenovo2;
                                 break;
-                            case 3 :
+                            case 3:
                                 asset.LaptopModel = lenovo3;
                                 break;
                         }
@@ -313,13 +313,13 @@ namespace KarlssonWorksAB_AssetTracker
                         int selectedIndexModel = modelMenu.Run();
                         switch (selectedIndexModel)
                         {
-                            case 0 :
+                            case 0:
                                 asset.LaptopModel = hp1;
                                 break;
-                            case 1 :
+                            case 1:
                                 asset.LaptopModel = hp2;
                                 break;
-                            case 3 :
+                            case 3:
                                 asset.LaptopModel = hp3;
                                 break;
                         }
@@ -332,13 +332,13 @@ namespace KarlssonWorksAB_AssetTracker
                         int selectedIndexModel = modelMenu.Run();
                         switch (selectedIndexModel)
                         {
-                            case 0 :
+                            case 0:
                                 asset.LaptopModel = dell1;
                                 break;
-                            case 1 :
+                            case 1:
                                 asset.LaptopModel = dell2;
                                 break;
-                            case 3 :
+                            case 3:
                                 asset.LaptopModel = dell3;
                                 break;
                         }
@@ -351,13 +351,13 @@ namespace KarlssonWorksAB_AssetTracker
                         int selectedIndexModel = modelMenu.Run();
                         switch (selectedIndexModel)
                         {
-                            case 0 :
+                            case 0:
                                 asset.LaptopModel = asusPC1;
                                 break;
-                            case 1 :
+                            case 1:
                                 asset.LaptopModel = asusPC2;
                                 break;
-                            case 3 :
+                            case 3:
                                 asset.LaptopModel = asusPC3;
                                 break;
                         }
@@ -370,19 +370,19 @@ namespace KarlssonWorksAB_AssetTracker
                         int selectedIndexModel = modelMenu.Run();
                         switch (selectedIndexModel)
                         {
-                            case 0 :
+                            case 0:
                                 asset.LaptopModel = acer1;
                                 break;
-                            case 1 :
+                            case 1:
                                 asset.LaptopModel = acer2;
                                 break;
-                            case 3 :
+                            case 3:
                                 asset.LaptopModel = acer3;
                                 break;
                         }
                     }
                 }
-                else if(asset.Type == mobilePhone)
+                else if (asset.Type == mobilePhone)
                 {
                     if (asset.Brand == iPhone)
                     {
@@ -392,13 +392,13 @@ namespace KarlssonWorksAB_AssetTracker
                         int selectedIndexModel = modelMenu.Run();
                         switch (selectedIndexModel)
                         {
-                            case 0 :
+                            case 0:
                                 asset.PhoneModel = IPhone1;
                                 break;
-                            case 1 :
+                            case 1:
                                 asset.PhoneModel = IPhone2;
                                 break;
-                            case 3 :
+                            case 3:
                                 asset.PhoneModel = IPhone3;
                                 break;
                         }
@@ -411,13 +411,13 @@ namespace KarlssonWorksAB_AssetTracker
                         int selectedIndexModel = modelMenu.Run();
                         switch (selectedIndexModel)
                         {
-                            case 0 :
+                            case 0:
                                 asset.PhoneModel = samsung1;
                                 break;
-                            case 1 :
+                            case 1:
                                 asset.PhoneModel = samsung2;
                                 break;
-                            case 3 :
+                            case 3:
                                 asset.PhoneModel = samsung3;
                                 break;
                         }
@@ -430,13 +430,13 @@ namespace KarlssonWorksAB_AssetTracker
                         int selectedIndexModel = modelMenu.Run();
                         switch (selectedIndexModel)
                         {
-                            case 0 :
+                            case 0:
                                 asset.PhoneModel = huawei1;
                                 break;
-                            case 1 :
+                            case 1:
                                 asset.PhoneModel = huawei2;
                                 break;
-                            case 3 :
+                            case 3:
                                 asset.PhoneModel = huawei3;
                                 break;
                         }
@@ -449,24 +449,23 @@ namespace KarlssonWorksAB_AssetTracker
                         int selectedIndexModel = modelMenu.Run();
                         switch (selectedIndexModel)
                         {
-                            case 0 :
+                            case 0:
                                 asset.PhoneModel = xiaomi1;
                                 break;
-                            case 1 :
+                            case 1:
                                 asset.PhoneModel = xiaomi2;
                                 break;
-                            case 3 :
+                            case 3:
                                 asset.PhoneModel = xiaomi3;
                                 break;
                         }
                     }
                 }
-
                 //------------------------------------------------------------------
                 // Change this so the user is not asked but rather the program detects at which country the asset is bought.
                 // And then sets the what type of currency was used on its own.
                 // It also tells the user in which currency it is supposed to be written in.
-                
+
                 // For Euro
                 if (asset.Office == france || asset.Office == germany || asset.Office == finland || asset.Office == spain)
                 {
@@ -485,7 +484,7 @@ namespace KarlssonWorksAB_AssetTracker
 
                 //------------------------------------------------------------------
                 // Ask the user for the price depending on the selected country (do it in double)
-                
+
                 // For Euro
                 if (asset.Office == france || asset.Office == germany || asset.Office == finland || asset.Office == spain)
                 {
@@ -502,10 +501,13 @@ namespace KarlssonWorksAB_AssetTracker
                     Console.WriteLine("What was the price of the asset in US Dollars?");
                 }
 
+
                 string inputPrice = Console.ReadLine();
                 double dblAssetPrice = Convert.ToDouble(inputPrice);
 
                 // Put the integer into the 'asset' object.
+                // And add the local price which does not use exchange rate.
+                asset.LocalPrice = dblAssetPrice;
                 asset.Price = dblAssetPrice;
 
                 // Setup the exchange rate to USD
@@ -541,6 +543,7 @@ namespace KarlssonWorksAB_AssetTracker
         private static void About()
         {
             Console.Clear();
+            Console.CursorVisible = false;
             Console.WriteLine("This program tracks assets for a company.");
             Console.WriteLine("It was written in educational purposes and I learned a great deal in the process");
             Console.WriteLine("Also I learned that I'm very fond of switches in C# :D");
@@ -556,28 +559,59 @@ namespace KarlssonWorksAB_AssetTracker
             }
         }
 
-        
 
+        // This method is called when to show the list of added items.
         private static void ShowList()
         {
             Console.Clear();
+            Console.CursorVisible = true;
             Console.WriteLine("Assets:\n");
-            Console.WriteLine("Type".PadRight(20) + "Brand".PadRight(20) + "Model".PadRight(30) + "Purchase Date".PadRight(20) + "Office:".PadRight(20) + "Price(USD)".PadRight(20) + "Purchase Currency".PadRight(20) + "Local Price".PadRight(20));
+            Console.WriteLine("Type:".PadRight(25) + "Brand:".PadRight(25) + "Model:".PadRight(35) + "Purchase Date:".PadRight(25) + "Office:".PadRight(25) + "Price(USD):".PadRight(25) + "Purchase Currency:".PadRight(25) + "Local Price:".PadRight(25));
+            Console.WriteLine("-----".PadRight(25) + "------".PadRight(25) + "------".PadRight(35) + "--------------".PadRight(25) + "-------".PadRight(25) + "-----------".PadRight(25) + "------------------".PadRight(25) + "------------".PadRight(25));
             Console.WriteLine();
+
+            // This sorts it first by office then by purchase date.
+            assets = assets.OrderBy(asset => asset.Office).ThenBy(asset => asset.PurchaseDate).ToList();
+
             foreach (BaseAssetStats asset in assets)
             {
+                //Check the date of purchase and color the element in list accordingly.
+                if (asset.PurchaseDate < DateTime.Parse("2019-01-01") && asset.PurchaseDate > DateTime.Parse("2016-01-01"))
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                }
+                else if (asset.PurchaseDate < DateTime.Parse("2016-01-01"))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+                else
+                {
+                    Console.ResetColor();
+                }
+
                 if (asset.Type == pC)
                 {
-                    Console.WriteLine(asset.Type.PadRight(20) + asset.Brand.PadRight(20) + asset.LaptopModel.PadRight(30) + asset.PurchaseDate.ToString("yyyy-MM-dd").PadRight(20) + asset.Office.PadRight(20) + asset.Price.ToString("0.00").PadRight(20) + asset.Currency.PadRight(20) + asset.LocalPrice.ToString("0.00").PadRight(20));
+                    Console.WriteLine(asset.Type.PadRight(25) + asset.Brand.PadRight(25) + asset.LaptopModel.PadRight(35) + asset.PurchaseDate.ToString("yyyy-MM-dd").PadRight(25) + asset.Office.PadRight(25) + asset.Price.ToString("0.00").PadRight(25) + asset.Currency.PadRight(25) + asset.LocalPrice.ToString("0.00").PadRight(25));
                 }
                 if (asset.Type == mobilePhone)
                 {
-                    Console.WriteLine(asset.Type.PadRight(20) + asset.Brand.PadRight(20) + asset.PhoneModel.PadRight(30) + asset.PurchaseDate.ToString("yyyy-MM-dd").PadRight(20) + asset.Office.PadRight(20) + asset.Price.ToString("0.00").PadRight(20) + asset.Currency.PadRight(20) + asset.LocalPrice.ToString("0.00").PadRight(20));
+                    Console.WriteLine(asset.Type.PadRight(25) + asset.Brand.PadRight(25) + asset.PhoneModel.PadRight(35) + asset.PurchaseDate.ToString("yyyy-MM-dd").PadRight(25) + asset.Office.PadRight(25) + asset.Price.ToString("0.00").PadRight(25) + asset.Currency.PadRight(25) + asset.LocalPrice.ToString("0.00").PadRight(25));
                 }
-                
-            }
+                Console.ResetColor();
 
-            Console.ReadLine();
+            }
+            Console.WriteLine("¤===================================================================================================================================================================================================¤");
+            Console.WriteLine();
+            Console.WriteLine("\nReturn to main menu? Y = yes, N = exit program");
+            if (Console.ReadLine().ToLower().Trim() == "y")
+            {
+                applogic start = new applogic();
+                start.Start();
+            }
+            else if (Console.ReadLine().ToLower().Trim() == "n")
+            {
+                Environment.Exit(0);
+            }
         }
     }
 }
