@@ -8,7 +8,7 @@ The program is user friendly allowing the user to navigate through the program u
 See pictures for examples:
 ![Alt text](mainmenu.jpg?raw=true "Main Menu")
 ![Alt text](addmenu.jpg?raw=true "Add Menu")
-![Alt text](showlist.jpg?raw=true "Title")
+![Alt text](showlist.jpg?raw=true "Show list")
 
 To run the program simply clone the repo and run it in VS or any other IDE you use.
 If there are any questions please contact me at: kodman91@gmail.com
